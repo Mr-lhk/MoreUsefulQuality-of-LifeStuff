@@ -7,6 +7,7 @@ on:
     tags: [ "v*" ]                # 推送以 v 开头的标签时触发发布流程（如 v1.0.0）
   pull_request:
     branches: [ "main" ]          # 提交到 main 的 PR 触发构建检查
+  workflow_dispatch:              # 手动触发构建
 
 # 防止同一个分支多次提交导致构建任务堆叠
 concurrency:
@@ -29,10 +30,9 @@ jobs:
           distribution: 'temurin' # 配置 Java 21 (NeoForge 1.21.1 必须)
 
       - name: Setup Gradle
-          uses: gradle/actions/setup-gradle@v4
-          with:
-            # 缓存 Gradle Wrapper
-            gradle-version: 'wrapper'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 'wrapper' # 缓存 Gradle Wrapper
 
       - name: Grant Execute Permission
         run: chmod +x gradlew # 赋予 Gradle 执行权限
