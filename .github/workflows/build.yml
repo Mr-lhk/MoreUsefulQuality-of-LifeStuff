@@ -29,7 +29,10 @@ jobs:
           distribution: 'temurin' # 配置 Java 21 (NeoForge 1.21.1 必须)
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3 # 设置 Gradle 缓存
+          uses: gradle/actions/setup-gradle@v4
+          with:
+            # 缓存 Gradle Wrapper
+            gradle-version: 'wrapper'
 
       - name: Grant Execute Permission
         run: chmod +x gradlew # 赋予 Gradle 执行权限
