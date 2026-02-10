@@ -1,0 +1,12 @@
+{
+  "itemGroup.muqols": "Example Mod Tab",
+  "block.muqols.example_block": "Example Block",
+  "item.muqols.example_item": "Example Item",
+  "muqols.configuration.title": "More Useful Quality-of-Life Stuff Configs",
+  "muqols.configuration.section.muqols.common.toml": "More Useful Quality-of-Life Stuff Configs",
+  "muqols.configuration.section.muqols.common.toml.title": "More Useful Quality-of-Life Stuff Configs",
+  "muqols.configuration.items": "Item List",
+  "muqols.configuration.logDirtBlock": "Log Dirt Block",
+  "muqols.configuration.magicNumberIntroduction": "Magic Number Text",
+  "muqols.configuration.magicNumber": "Magic Number"
+}
