@@ -1,5 +1,12 @@
 package com.li.muqols;
 
+import com.li.muqols.block.ModBlocks;
+import com.li.muqols.item.ModCreativeModeTabs;
+import com.li.muqols.item.ModItems;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -18,6 +25,26 @@ public class MoreUsefulQualityofLifeStuff {
     public static final String MOD_ID = "muqols";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    // The first code that is run when the mod is loaded.
+    public MoreUsefulQualityofLifeStuff(IEventBus modEventBus, ModContainer modContainer) {
+        // Register for commonSetup method.
+        modEventBus.addListener(this::commonSetup);
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
+
+        // Register ourselves for the server and other game events we are interested in.
+        // Do not add this if there are no @SubscribeEvent-annotated functions in this class.
+        NeoForge.EVENT_BUS.register(this);
+
+        // Register the item to a creative tab.
+//        modEventBus.addListener(this::addCreative);
+
+        // Register mod's ModConfigSpec so that FML can load the config file for us.
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code

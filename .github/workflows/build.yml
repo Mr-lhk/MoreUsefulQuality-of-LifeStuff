@@ -1,87 +1,145 @@
 name: NeoForge 1.21.1 CI & Release
 
-# 触发器配置
+# Workflow Triggers
 on:
+  # Push to development / stable branches
   push:
-    branches: [ "main", "develop" ] # 推送这两个分支时触发构建检查
-    tags: [ "v*" ]                # 推送以 v 开头的标签时触发发布流程（如 v1.0.0）
-  pull_request:
-    branches: [ "main" ]          # 提交到 main 的 PR 触发构建检查
-  workflow_dispatch:              # 手动触发构建
+    branches:
+      - main
+      - develop
 
-# 防止同一个分支多次提交导致构建任务堆叠
+    # Create a GitHub Release only when pushing a v* tag
+    tags:
+      - "v*"
+
+  # Validate pull requests targeting main / develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+  # Manual CI run
+  # NOTE: Manual execution never creates a Release.
+  workflow_dispatch:
+
+# Concurrency
+# Cancel an older CI run when a newer commit arrives on the same branch / PR / tag.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+
 jobs:
-  # --- 任务 1：构建 JAR 包 ---
+  # Job 1: Build
   build:
     name: Build and Package
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout source code
       - name: Checkout Source Code
-        uses: actions/checkout@v4 # 检出源码
+        uses: actions/checkout@v7
 
+      # Setup Java 21
       - name: Setup Java 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
-          java-version: '21'
-          distribution: 'temurin' # 配置 Java 21 (NeoForge 1.21.1 必须)
+          java-version: "21"
+          distribution: "temurin"
 
+      # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: 'wrapper'
-          cache-read-only: false
+        uses: gradle/actions/setup-gradle@v6
 
+      # Make Gradle Wrapper executable
       - name: Grant Execute Permission
-        run: chmod +x gradlew # 赋予 Gradle 执行权限
+        run: chmod +x gradlew
 
+      # Build
       - name: Run Gradle Build
-        run: ./gradlew build # 运行构建
+        run: ./gradlew build
 
+      # Show generated files for debugging
+      - name: List Build Artifacts
+        run: |
+          echo "=== build/libs ==="
+          ls -lah build/libs/
+
+      # Upload JAR artifacts
+      # These artifacts may be used by the Release job.
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build-libs
-          path: build/libs/
-          retention-days: 1 # 临时保存构建产物
+          path: build/libs/*.jar
+          retention-days: 7
+          if-no-files-found: error
 
-  # --- 任务 2：创建 GitHub Release ---
+  # Job 2: Create GitHub Release
   release:
     name: Create GitHub Release
+
+    # Release can only happen after a successful build.
     needs: build
-    if: startsWith(github.ref, 'refs/tags/v') # 只有推了 Tag 才运行本任务
+
+    # IMPORTANT:
+    # Only an actual push event creating/updating a v* tag may create a GitHub Release.
+    if: >
+      github.event_name == 'push' &&
+      github.ref_type == 'tag' &&
+      startsWith(github.ref_name, 'v')
+
     runs-on: ubuntu-latest
+
+    # Required by softprops/action-gh-release
     permissions:
-      contents: write # 关键：必须赋予写入权限才能创建 Release
+      contents: write
 
     steps:
+      # Checkout source code
       - name: Checkout Source Code
-        uses: actions/checkout@v4 # 检出源码
+        uses: actions/checkout@v7
 
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
+      # Download artifacts produced by the Build job
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v8
         with:
           name: build-libs
-          path: dist # 下载之前构建好的产物
+          path: dist
 
-      - name: Clean Unnecessary JARs
-        # 重点修复：过滤掉 sources 和 dev 等非运行包
+      # Prepare release JARs
+      - name: Prepare Release Artifacts
         run: |
-          find dist/ -type f ! -regex ".*-[0-9].*\.jar" -delete
-          find dist/ -type f -name "*-sources.jar" -delete
-          find dist/ -type f -name "*-dev.jar" -delete
-          ls -l dist/
+          mkdir -p dist-release
 
-      - name: Create Release and Upload
-        uses: softprops/action-gh-release@v2
+          find dist \
+            -type f \
+            -name "*.jar" \
+            ! -name "*-sources.jar" \
+            ! -name "*-dev.jar" \
+            -exec cp {} dist-release/ \;
+
+          echo "=== Release Artifacts ==="
+          ls -lah dist-release/
+
+      # Create GitHub Release and upload JARs
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
         with:
-          files: dist/*.jar # 上传 dist 目录下剩余的 JAR 包
-          generate_release_notes: false # 关闭基于commit信息的changelog
-          # 如果是测试版，可以在 Tag 名里带上 -pre 或 -alpha，这里会自动识别
-          prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') }}
+          files: dist-release/*.jar
+
+          # Do not automatically generate release notes
+          generate_release_notes: false
+
+          # Tags containing alpha / beta / rc are prereleases
+          prerelease: >-
+            ${{
+              contains(github.ref_name, '-alpha') ||
+              contains(github.ref_name, '-beta') ||
+              contains(github.ref_name, '-rc')
+            }}
+
           draft: false
+
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 这是一个自动生成的 Token，无需手动配置
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

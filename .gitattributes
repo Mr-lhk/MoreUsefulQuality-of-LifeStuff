@@ -1,5 +1,8 @@
-# Disable autocrlf on generated files, they always generate with LF
-# Add any extra files or paths here to make git stop saying they
-# are changed when only line endings change.
+# --- 自动处理换行符 (EOL) ---
+# 确保项目代码在不同操作系统间保持一致
+* text=auto
+
+# --- 针对 NeoForge 生成文件的换行符修正 ---
+# 强制 LF 换行，防止缓存文件误报修改
 src/generated/**/.cache/cache text eol=lf
 src/generated/**/*.json text eol=lf

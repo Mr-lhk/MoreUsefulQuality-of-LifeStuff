@@ -1,26 +1,37 @@
-Installation information
-=======
+# [MUQoLS] More Useful Quality-of-Life Stuff
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided
-by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Overview
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is
-either IntelliJ IDEA or Eclipse.
+**MuQoLS (More Useful Quality-of-Life Stuff)** is a Minecraft mod focused on adding small, practical features that make
+everyday gameplay more convenient and enjoyable.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything
-{this does not affect your code} and then start the process again.
+The goal of MuQoLS is **not** to overhaul Minecraft or fundamentally change the way the game is played. Instead, it
+provides useful quality-of-life improvements that fit naturally into the vanilla experience.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+The mod is designed with balance in mind. It will not introduce deliberately overpowered or “imba” items, so you can
+safely add it to an existing world without turning the game into a completely different experience.
 
-Additional Resources:
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## Development Status
+
+MuQoLS is currently under **active and rapid development**.
+
+Because the mod is still evolving:
+
+* Features may be added, removed, or significantly changed.
+* Behavior and mechanics may change between versions.
+* Some features may not work as expected.
+* New versions may not always be fully compatible with older versions.
+
+For the best experience, it is recommended to keep your MuQoLS version up to date.
+
+If you encounter a bug, please report it. That helps a lot.
+
+## Mod Loader
+
+MuQoLS currently supports **NeoForge only**.
+
+There are currently **no plans to support Fabric**.
+
+## Licence
+
+MuQoLS is licensed under the **GNU General Public License (GNU GPLv3)**.
