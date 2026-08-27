@@ -1,7 +1,9 @@
 {
   "item.muqols.example_item": "Example Item",
   "item.muqols.tab_icon": "Tab Icon",
+
   "itemGroup.muqols_tab": "More Useful QoL Stuff",
+  "block.muqols.example_block": "Example Block",
 
   "muqols.configuration.title": "More Useful Quality-of-Life Stuff Configs",
   "muqols.configuration.section.muqols.common.toml": "More Useful Quality-of-Life Stuff Configs",

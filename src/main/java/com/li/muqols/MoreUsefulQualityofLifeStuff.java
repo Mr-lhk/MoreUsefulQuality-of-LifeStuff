@@ -1,5 +1,6 @@
 package com.li.muqols;
 
+import com.li.muqols.block.ModBlocks;
 import com.li.muqols.item.ModCreativeModeTabs;
 import com.li.muqols.item.ModItems;
 import net.neoforged.bus.api.IEventBus;
@@ -31,6 +32,7 @@ public class MoreUsefulQualityofLifeStuff {
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
 
         // Register ourselves for the server and other game events we are interested in.
