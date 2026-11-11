@@ -1,7 +1,6 @@
 package com.li.muqols.item;
 
 import com.li.muqols.MoreUsefulQualityofLifeStuff;
-import com.li.muqols.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,17 +15,13 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MoreUsefulQualityofLifeStuff.MOD_ID);
 
     // 注册创造模式物品栏
-
     public static final Supplier<CreativeModeTab> MUQOLS_TAB =
             CREATIVE_MOD_TABS.register("muqols_tab", () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.TAB_ICON.get()))
                     .title(Component.translatable("itemGroup.muqols_tab"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.EXAMPLE_ITEM);
-                        output.accept(ModBlocks.EXAMPLE_BLOCK);
-                    }).build());
+                    // 有新内容后通过 .displayItems((params, output) -> output.accept(...)) 加入
+                    .build());
 
-    // 主类调用
     public static void register(IEventBus eventBus) {
         CREATIVE_MOD_TABS.register(eventBus);
     }
