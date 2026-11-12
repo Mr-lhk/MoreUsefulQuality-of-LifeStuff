@@ -1,15 +1,22 @@
 {
-  "item.muqols.example_item": "Example Item",
   "item.muqols.tab_icon": "Tab Icon",
 
+  "item.muqols.wooden_multitool": "Wooden Multitool",
+  "item.muqols.stone_multitool": "Stone Multitool",
+  "item.muqols.iron_multitool": "Iron Multitool",
+  "item.muqols.golden_multitool": "Golden Multitool",
+  "item.muqols.diamond_multitool": "Diamond Multitool",
+  "item.muqols.netherite_multitool": "Netherite Multitool",
+
   "itemGroup.muqols_tab": "More Useful QoL Stuff",
-  "block.muqols.example_block": "Example Block",
+
+  "tooltip.muqols.multitool.usage": "Pickaxe, axe, hoe, shovel and sword in one",
+  "tooltip.muqols.multitool.sneak": "Sneak + right-click: flatten ground / extinguish campfire",
+
+  "pack.muqols.multitool": "MuQoLS Multitool Item Tags",
 
   "muqols.configuration.title": "More Useful Quality-of-Life Stuff Configs",
-  "muqols.configuration.section.muqols.common.toml": "More Useful Quality-of-Life Stuff Configs",
-  "muqols.configuration.section.muqols.common.toml.title": "More Useful Quality-of-Life Stuff Configs",
-  "muqols.configuration.items": "Item List",
-  "muqols.configuration.logDirtBlock": "Log Dirt Block",
-  "muqols.configuration.magicNumberIntroduction": "Magic Number Text",
-  "muqols.configuration.magicNumber": "Magic Number"
+  "muqols.configuration.section.muqols.common.toml": "More Useful Quality-of-Life Stuff",
+  "muqols.configuration.section.muqols.common.toml.title": "More Useful Quality-of-Life Stuff",
+  "muqols.configuration.enableMultitool": "Enable Multitools"
 }
