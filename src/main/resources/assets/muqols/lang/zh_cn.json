@@ -11,5 +11,12 @@
   "itemGroup.muqols_tab": "更多实用 QoL 物品",
 
   "tooltip.muqols.multitool.usage": "集镐、斧、锄、锹、剑于一体",
-  "tooltip.muqols.multitool.sneak": "潜行 + 右键：铲平地面 / 熄灭营火"
+  "tooltip.muqols.multitool.sneak": "潜行 + 右键：铲平地面 / 熄灭营火",
+
+  "pack.muqols.multitool": "MuQoLS 多功能工具物品标签",
+
+  "muqols.configuration.title": "更多实用 QoL 物品配置",
+  "muqols.configuration.section.muqols.common.toml": "更多实用 QoL 物品",
+  "muqols.configuration.section.muqols.common.toml.title": "更多实用 QoL 物品",
+  "muqols.configuration.enableMultitool": "启用多功能工具"
 }

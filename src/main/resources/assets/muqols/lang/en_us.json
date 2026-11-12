@@ -11,5 +11,12 @@
   "itemGroup.muqols_tab": "More Useful QoL Stuff",
 
   "tooltip.muqols.multitool.usage": "Pickaxe, axe, hoe, shovel and sword in one",
-  "tooltip.muqols.multitool.sneak": "Sneak + right-click: flatten ground / extinguish campfire"
+  "tooltip.muqols.multitool.sneak": "Sneak + right-click: flatten ground / extinguish campfire",
+
+  "pack.muqols.multitool": "MuQoLS Multitool Item Tags",
+
+  "muqols.configuration.title": "More Useful Quality-of-Life Stuff Configs",
+  "muqols.configuration.section.muqols.common.toml": "More Useful Quality-of-Life Stuff",
+  "muqols.configuration.section.muqols.common.toml.title": "More Useful Quality-of-Life Stuff",
+  "muqols.configuration.enableMultitool": "Enable Multitools"
 }
