@@ -19,7 +19,14 @@ public class ModCreativeModeTabs {
             CREATIVE_MOD_TABS.register("muqols_tab", () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.TAB_ICON.get()))
                     .title(Component.translatable("itemGroup.muqols_tab"))
-                    // 有新内容后通过 .displayItems((params, output) -> output.accept(...)) 加入
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.WOODEN_MULTITOOL);
+                        output.accept(ModItems.STONE_MULTITOOL);
+                        output.accept(ModItems.IRON_MULTITOOL);
+                        output.accept(ModItems.GOLDEN_MULTITOOL);
+                        output.accept(ModItems.DIAMOND_MULTITOOL);
+                        output.accept(ModItems.NETHERITE_MULTITOOL);
+                    })
                     .build());
 
     public static void register(IEventBus eventBus) {

@@ -1,0 +1,15 @@
+{
+  "item.muqols.tab_icon": "物品栏图标",
+
+  "item.muqols.wooden_multitool": "木质多功能工具",
+  "item.muqols.stone_multitool": "石质多功能工具",
+  "item.muqols.iron_multitool": "铁质多功能工具",
+  "item.muqols.golden_multitool": "金质多功能工具",
+  "item.muqols.diamond_multitool": "钻石多功能工具",
+  "item.muqols.netherite_multitool": "下界合金多功能工具",
+
+  "itemGroup.muqols_tab": "更多实用 QoL 物品",
+
+  "tooltip.muqols.multitool.usage": "集镐、斧、锄、锹、剑于一体",
+  "tooltip.muqols.multitool.sneak": "潜行 + 右键：铲平地面 / 熄灭营火"
+}
