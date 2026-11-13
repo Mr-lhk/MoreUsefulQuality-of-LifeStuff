@@ -35,7 +35,3 @@ There are currently **no plans to support Fabric**.
 ## Licence
 
 MuQoLS is licensed under the **MIT License**. See [LICENSE.txt](LICENSE.txt) for the full text.
-
-All textures in this project are original artwork created for it; the multitool icons are based on the
-project author's own pixel art.
-
