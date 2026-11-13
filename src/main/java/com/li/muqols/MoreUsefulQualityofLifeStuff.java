@@ -1,6 +1,7 @@
 package com.li.muqols;
 
 import com.li.muqols.block.ModBlocks;
+import com.li.muqols.item.FlightRingHandler;
 import com.li.muqols.item.ModCreativeModeTabs;
 import com.li.muqols.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -13,6 +14,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.slf4j.Logger;
 
@@ -31,14 +33,21 @@ public class MoreUsefulQualityofLifeStuff {
 
         // 配置在注册阶段之后才会被 NeoForge 加载，所以这里用启动早期读取到的值决定是否注册。
         boolean multitoolsEnabled = Config.isMultitoolEnabled();
+        boolean flightRingEnabled = Config.isFlightRingEnabled();
         if (!multitoolsEnabled) {
             LOGGER.info("Multitool items are disabled in the config; skipping their registration and item tags.");
+        }
+        if (!flightRingEnabled) {
+            LOGGER.info("The flight ring is disabled in the config; skipping its registration.");
         }
 
         // Register blocks first: items may reference block entries (e.g. BlockItems).
         ModBlocks.register(modEventBus);
-        ModItems.register(modEventBus, multitoolsEnabled);
+        ModItems.register(modEventBus, multitoolsEnabled, flightRingEnabled);
         ModCreativeModeTabs.register(modEventBus);
+
+        // 飞行指环的飞行能力维护
+        NeoForge.EVENT_BUS.addListener(FlightRingHandler::onPlayerTick);
 
         modEventBus.addListener(this::addPackFinders);
     }
