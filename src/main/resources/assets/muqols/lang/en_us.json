@@ -16,5 +16,7 @@
   "muqols.configuration.enableMultitool": "Enable Multitools",
   "item.muqols.flight_ring": "Flight Ring",
   "tooltip.muqols.flight_ring": "Keep it in your inventory or offhand to fly in survival and adventure",
+  "tooltip.muqols.flight_ring.curios": "Can also be worn in a Curios ring slot",
+  "pack.muqols.flight_ring": "MuQoLS Flight Ring Curios Data",
   "muqols.configuration.enableFlightRing": "Enable Flight Ring"
 }

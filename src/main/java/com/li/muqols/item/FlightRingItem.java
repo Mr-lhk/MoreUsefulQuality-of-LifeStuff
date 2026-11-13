@@ -2,6 +2,7 @@ package com.li.muqols.item;
 
 import java.util.List;
 
+import com.li.muqols.compat.curios.CuriosCompat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -19,5 +20,8 @@ public class FlightRingItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip.muqols.flight_ring").withStyle(ChatFormatting.GRAY));
+        if (CuriosCompat.isLoaded()) {
+            tooltip.add(Component.translatable("tooltip.muqols.flight_ring.curios").withStyle(ChatFormatting.DARK_GRAY));
+        }
     }
 }

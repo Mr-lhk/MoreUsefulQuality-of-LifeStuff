@@ -16,5 +16,7 @@
   "muqols.configuration.enableMultitool": "启用多功能工具",
   "item.muqols.flight_ring": "飞行指环",
   "tooltip.muqols.flight_ring": "放在背包或副手中即可飞行",
+  "tooltip.muqols.flight_ring.curios": "也可装备在 Curios 的戒指槽中",
+  "pack.muqols.flight_ring": "MuQoLS 飞行指环 Curios 数据",
   "muqols.configuration.enableFlightRing": "启用飞行指环"
 }
