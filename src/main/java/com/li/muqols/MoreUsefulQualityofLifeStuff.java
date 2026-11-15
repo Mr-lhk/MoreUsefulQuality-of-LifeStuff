@@ -1,6 +1,8 @@
 package com.li.muqols;
 
 import com.li.muqols.block.ModBlocks;
+import com.li.muqols.compat.curios.CuriosCompat;
+import com.li.muqols.item.FlightRingHandler;
 import com.li.muqols.item.ModCreativeModeTabs;
 import com.li.muqols.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -13,6 +15,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.slf4j.Logger;
 
@@ -31,33 +35,67 @@ public class MoreUsefulQualityofLifeStuff {
 
         // 配置在注册阶段之后才会被 NeoForge 加载，所以这里用启动早期读取到的值决定是否注册。
         boolean multitoolsEnabled = Config.isMultitoolEnabled();
+        boolean flightRingEnabled = Config.isFlightRingEnabled();
         if (!multitoolsEnabled) {
             LOGGER.info("Multitool items are disabled in the config; skipping their registration and item tags.");
+        }
+        if (!flightRingEnabled) {
+            LOGGER.info("The flight ring is disabled in the config; skipping its registration.");
         }
 
         // Register blocks first: items may reference block entries (e.g. BlockItems).
         ModBlocks.register(modEventBus);
-        ModItems.register(modEventBus, multitoolsEnabled);
+        ModItems.register(modEventBus, multitoolsEnabled, flightRingEnabled);
         ModCreativeModeTabs.register(modEventBus);
 
+        // 飞行指环的飞行能力维护
+        NeoForge.EVENT_BUS.addListener(FlightRingHandler::onPlayerTick);
+
         modEventBus.addListener(this::addPackFinders);
+        modEventBus.addListener(this::registerCapabilities);
     }
 
     /**
-     * 多功能工具的原版物品标签（{@code #minecraft:axes} 等）引用的是这六件物品；
-     * 关闭功能时这些物品不存在，若标签仍被加载会输出 “missing references” 错误。
-     * 因此标签被放在模组内嵌的 {@code multitool_pack} 数据包里，仅在启用时才挂载。
+     * Curios 是可选联动：只有检测到 Curios 时才把飞行指环注册为“戒指”物品。
+     * 此时物品已经完成注册，可以安全地取得 {@link net.minecraft.world.item.Item} 实例。
      */
-    private void addPackFinders(AddPackFindersEvent event) {
-        if (event.getPackType() != PackType.SERVER_DATA || !Config.isMultitoolEnabled()) {
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        if (!CuriosCompat.isLoaded() || ModItems.flightRing() == null) {
             return;
         }
-        event.addPackFinders(
-                ResourceLocation.fromNamespaceAndPath(MOD_ID, "multitool_pack"),
-                PackType.SERVER_DATA,
-                Component.translatable("pack.muqols.multitool"),
-                PackSource.BUILT_IN,
-                true,
-                Pack.Position.TOP);
+        CuriosCompat.registerFlightRing(ModItems.flightRing().get());
+        LOGGER.info("Curios detected; the flight ring can be worn in the ring slot.");
+    }
+
+    /**
+     * 关闭某项功能时，相关的数据文件不能跟着加载，否则会引用不存在的物品并输出
+     * “missing references” 错误。因此这些数据都放在模组内嵌的数据包里，按需挂载：
+     * <ul>
+     *   <li>{@code multitool_pack}：多功能工具的原版物品标签（{@code #minecraft:axes} 等）；</li>
+     *   <li>{@code flight_ring_pack}：飞行指环的 Curios 戒指标签（{@code #curios:ring}）。</li>
+     * </ul>
+     */
+    private void addPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() != PackType.SERVER_DATA) {
+            return;
+        }
+        if (Config.isMultitoolEnabled()) {
+            event.addPackFinders(
+                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "multitool_pack"),
+                    PackType.SERVER_DATA,
+                    Component.translatable("pack.muqols.multitool"),
+                    PackSource.BUILT_IN,
+                    true,
+                    Pack.Position.TOP);
+        }
+        if (Config.isFlightRingEnabled()) {
+            event.addPackFinders(
+                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "flight_ring_pack"),
+                    PackType.SERVER_DATA,
+                    Component.translatable("pack.muqols.flight_ring"),
+                    PackSource.BUILT_IN,
+                    true,
+                    Pack.Position.TOP);
+        }
     }
 }

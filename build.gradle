@@ -18,7 +18,11 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    // Curios API is an optional integration; this repository only supplies the compile-time API.
+    maven {
+        name = 'Curios'
+        url = 'https://maven.theillusivec4.top/'
+    }
 }
 
 base {
@@ -112,6 +116,11 @@ configurations {
 }
 
 dependencies {
+    // Optional Curios API integration. compileOnly keeps Curios out of the published
+    // dependency metadata; localRuntime makes it available in the dev runtime for testing.
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    localRuntime "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
