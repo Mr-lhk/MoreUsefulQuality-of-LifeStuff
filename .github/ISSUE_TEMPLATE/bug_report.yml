@@ -1,0 +1,110 @@
+name: "🐛 Bug 报告 / Bug Report"
+description: "报告可复现的崩溃、错误或异常行为。Report a reproducible crash, error, or unexpected behavior."
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 提交前请先确认 / Before you submit
+
+        感谢反馈！请先搜索[现有 Issue](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/issues?q=is%3Aissue) 和 [Discussions](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions)，避免重复报告。
+
+        Thanks for reporting! Please search existing issues and discussions first to avoid duplicates.
+
+        **如何获取日志 / Where to find logs**
+
+        - 游戏日志：`.minecraft/logs/latest.log`
+        - 崩溃报告：`.minecraft/crash-reports/crash-*.txt`
+        - 启动器日志：在启动器的「日志 / Logs」页面导出
+
+        **请勿只粘贴截图中的日志。** 文本日志才能被搜索和引用。Please attach text logs, not screenshots of logs.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: "提交前检查 / Pre-flight checklist"
+      options:
+        - label: "我已搜索现有 Issue 和 Discussions，确认没有重复。I have searched existing issues and discussions and found no duplicate."
+          required: true
+        - label: "我正在使用最新版本的 MuQoLS。I am using the latest MuQoLS version."
+          required: true
+        - label: "我已尝试仅保留 MuQoLS 和必要的前置模组进行测试。I have tested with only MuQoLS and its required dependencies."
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "问题描述 / Describe the bug"
+      description: "清晰、简洁地说明发生了什么。A clear and concise description of what happened."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "复现步骤 / Steps to reproduce"
+      description: "请写出最小、可重复的步骤。Minimal, repeatable steps."
+      placeholder: |
+        1. 安装 ... / Install ...
+        2. 进入 ... / Go to ...
+        3. 使用 ... / Use ...
+        4. 看到 ... / See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "预期行为与实际行为 / Expected vs. actual behavior"
+      description: "你期望发生什么？实际发生了什么？What did you expect to happen, and what happened instead?"
+    validations:
+      required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: "MuQoLS 版本 / MuQoLS version"
+      description: "例如 0.1.0。可在模组列表或 JAR 文件名中查看。Example: 0.1.0. Check the mod list or the JAR filename."
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: minecraft_version
+    attributes:
+      label: "Minecraft 版本 / Minecraft version"
+      placeholder: "1.21.1"
+    validations:
+      required: true
+  - type: input
+    id: neoforge_version
+    attributes:
+      label: "NeoForge 版本 / NeoForge version"
+      description: "例如 21.1.219。Example: 21.1.219."
+      placeholder: "21.1.219"
+    validations:
+      required: true
+  - type: textarea
+    id: mod_list
+    attributes:
+      label: "其他模组 / Other mods"
+      description: "请粘贴完整的模组列表，或至少列出可能相关的模组及其版本。Paste the full mod list, or at least list possibly related mods and their versions."
+      placeholder: |
+        - MuQoLS 0.1.0
+        - NeoForge 21.1.219
+        - ...
+    validations:
+      required: true
+  - type: upload
+    id: logs
+    attributes:
+      label: "日志与崩溃报告 / Logs & crash report"
+      description: "上传 latest.log 和/或 crash-report。支持 .log、.txt、.json、.zip（最大 25 MB）。Upload latest.log and/or the crash report. .log, .txt, .json, .zip up to 25 MB."
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: "相关配置 / Relevant config"
+      description: "如果修改过配置，请粘贴相关片段。Paste the relevant section if you changed the config."
+      render: toml
+  - type: upload
+    id: screenshots
+    attributes:
+      label: "截图或视频 / Screenshots or video"
+      description: "可选。图片最大 10 MB，视频最大 100 MB。Optional. Images up to 10 MB, videos up to 100 MB."

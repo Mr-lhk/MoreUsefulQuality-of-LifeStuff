@@ -1,0 +1,33 @@
+name: Add to Project
+
+on:
+  issues:
+    types: [opened, reopened]
+  # pull_request_target 让 fork PR 也能拿到 PROJECT_TOKEN；本工作流不 checkout 代码。
+  # pull_request_target lets fork PRs access PROJECT_TOKEN; this workflow never checks out code.
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  add-to-project:
+    name: Add issue or PR to MuQoLS Development
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check PROJECT_TOKEN secret
+        env:
+          PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+        run: |
+          if [ -z "$PROJECT_TOKEN" ]; then
+            echo "::error::PROJECT_TOKEN secret is missing. See .github/PROJECT.md for setup."
+            exit 1
+          fi
+
+      - name: Add item to project
+        uses: actions/add-to-project@v2.0.1
+        with:
+          project-url: https://github.com/users/Mr-lhk/projects/6
+          github-token: ${{ secrets.PROJECT_TOKEN }}
