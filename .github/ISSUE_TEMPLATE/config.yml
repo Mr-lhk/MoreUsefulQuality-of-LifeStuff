@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 使用与安装问题 / Questions & Help"
+    url: https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions/categories/q-a
+    about: "安装、配置、玩法或一般性问题，请先在 Discussions 提问。Ask here first for installation, configuration, gameplay, or general questions."
+  - name: "💡 想法与建议 / Ideas & Suggestions"
+    url: https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions/categories/ideas
+    about: "还不确定是否值得做成正式功能？先来 Discussions 讨论。Not sure it should be a formal feature request? Discuss it first."
+  - name: "📖 文档与常见问题 / README"
+    url: https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff#readme
+    about: "提交 Issue 前请先阅读 README。Please read the README before opening an issue."

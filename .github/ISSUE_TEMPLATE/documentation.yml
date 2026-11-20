@@ -1,0 +1,65 @@
+name: "📝 文档与翻译 / Docs & Translation"
+description: "报告文档错误、缺失说明或翻译问题。Report documentation errors, missing explanations, or translation issues."
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 帮助改进文档和翻译 / Help improve docs and translations
+
+        文档问题包括 README、配置说明、游戏内提示，以及 `src/main/resources/assets/muqols/lang/` 下的语言文件。Documentation includes the README, configuration notes, in-game text, and the language files under `src/main/resources/assets/muqols/lang/`.
+
+        如果你愿意直接修改，欢迎提交 PR；也可以先用这个表单指出问题。If you would like to fix it directly, a PR is welcome; you can also use this form to report it first.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: "提交前检查 / Pre-flight checklist"
+      options:
+        - label: "我已确认该问题存在于最新版本中。I have confirmed the issue exists in the latest version."
+          required: true
+        - label: "我已搜索现有 Issue，确认没有重复。I have searched existing issues and found no duplicate."
+          required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: "问题类型 / Type"
+      options:
+        - "文档错误 / 过时 (Documentation error / outdated)"
+        - "缺少说明 (Missing documentation)"
+        - "翻译错误 (Translation error)"
+        - "缺少翻译 (Missing translation)"
+        - "其他 (Other)"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: "位置 / Location"
+      description: "文件路径、页面链接或游戏内界面。File path, page URL, or in-game screen."
+      placeholder: "README.md / src/main/resources/assets/muqols/lang/en_us.json / ..."
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "问题描述 / Describe the issue"
+      description: "哪里不对或缺失？请引用原文。What is wrong or missing? Quote the original text."
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: "建议的修改 / Suggested fix"
+      description: "如果你有更好的措辞或译文，请写在这里；没有也可以留空。If you have better wording or a translation, put it here; otherwise leave it blank."
+  - type: input
+    id: language
+    attributes:
+      label: "涉及语言 / Language"
+      description: "翻译问题请填写，例如简体中文、English。For translation issues, e.g. Simplified Chinese, English."
+      placeholder: "简体中文 / English"
+  - type: upload
+    id: screenshots
+    attributes:
+      label: "截图（可选）/ Screenshots (optional)"
+      description: "可选。Optional. Images up to 10 MB."

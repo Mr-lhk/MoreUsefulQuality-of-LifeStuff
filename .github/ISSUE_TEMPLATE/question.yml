@@ -1,0 +1,80 @@
+name: "❓ 使用与安装问题 / Usage & Installation"
+description: "询问安装、配置或玩法问题。Ask about installation, configuration, or gameplay."
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 先看看这些地方 / Check these first
+
+        - [README](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff#readme) 中有安装、依赖和配置说明。The README covers installation, dependencies, and configuration.
+        - 一般性讨论、玩法和整合包问题更适合发在 [Q&A Discussions](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions/categories/q-a)。General discussion, gameplay, and modpack questions belong in Q&A Discussions.
+        - 如果你确认是 Bug，请改用 **Bug 报告** 模板。If you are confident it is a bug, use the **Bug Report** form instead.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: "提交前检查 / Pre-flight checklist"
+      options:
+        - label: "我已阅读 README 的安装与配置部分。I have read the installation and configuration sections of the README."
+          required: true
+        - label: "我已搜索现有 Issue 和 Discussions。I have searched existing issues and discussions."
+          required: true
+        - label: "我使用的是最新版本的 MuQoLS。I am using the latest MuQoLS version."
+          required: true
+  - type: dropdown
+    id: topic
+    attributes:
+      label: "问题类型 / Topic"
+      options:
+        - "安装 / 启动 (Installation / Startup)"
+        - "配置 (Configuration)"
+        - "玩法 / 功能使用 (Gameplay / Feature usage)"
+        - "多人服务器 (Multiplayer server)"
+        - "整合包 (Modpack)"
+        - "其他 (Other)"
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: "你的问题 / Your question"
+      description: "请具体描述你想完成什么、卡在哪一步。Describe what you are trying to do and where you are stuck."
+    validations:
+      required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: "MuQoLS 版本 / MuQoLS version"
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: "运行环境 / Environment"
+      description: "Minecraft、NeoForge、启动器，以及是否使用整合包。Minecraft, NeoForge, launcher, and whether you use a modpack."
+      placeholder: |
+        - Minecraft: 1.21.1
+        - NeoForge: 21.1.219
+        - Launcher: ...
+        - Modpack: ...
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: "已尝试的方法 / What have you tried?"
+      description: "例如重装、改配置、只保留 MuQoLS。For example: reinstalling, changing config, testing with only MuQoLS."
+    validations:
+      required: true
+  - type: upload
+    id: logs
+    attributes:
+      label: "日志（可选）/ Logs (optional)"
+      description: "如果涉及启动失败或报错，请上传 latest.log。支持 .log、.txt、.json、.zip（最大 25 MB）。If startup fails or an error appears, upload latest.log. .log, .txt, .json, .zip up to 25 MB."
+  - type: upload
+    id: screenshots
+    attributes:
+      label: "截图（可选）/ Screenshots (optional)"
+      description: "可选。Optional. Images up to 10 MB."
