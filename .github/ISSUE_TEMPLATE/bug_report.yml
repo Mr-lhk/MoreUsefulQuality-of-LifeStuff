@@ -19,6 +19,8 @@ body:
         - 启动器日志：在启动器的「日志 / Logs」页面导出
 
         **请勿只粘贴截图中的日志。** 文本日志才能被搜索和引用。Please attach text logs, not screenshots of logs.
+
+        没有日志也可以提交：把现象、复现步骤和环境写清楚同样有帮助，日志可以之后在评论里补充。No logs? That is fine — a clear description of the symptoms, steps and environment is still useful, and logs can be added later in a comment.
   - type: checkboxes
     id: preflight
     attributes:
@@ -93,10 +95,10 @@ body:
   - type: upload
     id: logs
     attributes:
-      label: "日志与崩溃报告 / Logs & crash report"
-      description: "上传 latest.log 和/或 crash-report。支持 .log、.txt、.json、.zip（最大 25 MB）。Upload latest.log and/or the crash report. .log, .txt, .json, .zip up to 25 MB."
+      label: "日志与崩溃报告（可选）/ Logs & crash report (optional)"
+      description: "有日志就上传 latest.log 和/或 crash-report（.log、.txt、.json、.zip，最大 25 MB）；没有也可以提交。Upload latest.log and/or the crash report if you have them (.log, .txt, .json, .zip up to 25 MB); an issue without logs is still welcome."
     validations:
-      required: true
+      required: false
   - type: textarea
     id: config
     attributes:

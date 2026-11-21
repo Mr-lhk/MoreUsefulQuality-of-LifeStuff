@@ -3,16 +3,29 @@
 [![Build](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
-**MuQoLS** is a utility-focused Minecraft mod for **NeoForge 1.21.1**. It is built around one idea: remove the small,
-repetitive frustrations that get in the way of playing, and replace them with practical quality-of-life improvements.
+MuQoLS is a small NeoForge 1.21.1 mod that removes everyday annoyances instead of adding new systems. It is meant to
+feel like vanilla: a handful of practical conveniences, no new progression, no overpowered items.
 
-The goal of MuQoLS is **not** to overhaul Minecraft or fundamentally change the way the game is played. Instead, it
-provides useful quality-of-life improvements that fit naturally into the vanilla experience.
+## Features
 
-> **Project status:** early and rapid development. Features may be added, removed, or significantly changed, and new
-> versions may not always be fully compatible with older ones. Follow the
-> [project board](https://github.com/users/Mr-lhk/projects/6) or
-> [releases](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/releases) for progress.
+- **Six multitools** (wood, stone, iron, gold, diamond, netherite) — one item that mines like a pickaxe, chops like an
+  axe, tills like a hoe, digs like a shovel and hits like a sword, with stats aligned to the vanilla tool of its tier.
+- **Flight ring** — while the ring is in your inventory, offhand, or a Curios ring slot, survival and adventure players
+  can fly. Creative and spectator players are untouched.
+
+Both features are enabled by default and can be turned off in the config. Recipes are not implemented yet.
+
+## Design philosophy
+
+1. **Convenience, not power.** The mod should save clicks and busywork, not make the player stronger. Every item is
+   balanced against its vanilla equivalent.
+2. **Small and focused.** Several small, independent features are better than one large overhaul — each one can be
+   understood and disabled on its own.
+3. **Vanilla first.** No new systems to learn. If a feature changes how the game feels, it should feel like vanilla
+   Minecraft doing it.
+4. **Configurable.** Anything that changes gameplay can be switched off, so the mod can be tuned to a pack.
+5. **Compatibility-friendly.** No hard dependencies. Optional integrations (such as Curios ring slots) are detected at
+   runtime and simply skipped when the other mod is absent.
 
 ## Requirements
 
@@ -29,27 +42,16 @@ provides useful quality-of-life improvements that fit naturally into the vanilla
 3. Place the jar in your Minecraft `mods` folder.
 4. Launch the game with the NeoForge profile.
 
-If you are installing on a dedicated server, place the same jar in the server's `mods` folder.
-
-## Design goals
-
-- Reduce repetitive busywork in everyday gameplay.
-- Provide sensible defaults, with configuration for players who want to tune behavior.
-- Stay compatible-friendly: avoid hard dependencies where possible and document conflicts clearly.
-- Prefer small, focused features over one large overhaul.
-
-## Mod loader
-
-MuQoLS currently supports **NeoForge only**. There are currently **no plans to support Fabric**.
+On a dedicated server, place the same jar in the server's `mods` folder.
 
 ## Configuration
 
-MuQoLS uses NeoForge's config system. In game, open `Options → Mods → MuQoLS → Config`. The config file is also
-available at `config/muqols-common.toml`.
+The config file is `config/muqols-common.toml`; it is also reachable in game from `Options → Mods → MuQoLS → Config`.
+Changing it requires a restart, because the mod decides which items to register before the config is loaded.
 
 ## Building from source
 
-You need JDK 21. Clone the repository and run the Gradle build:
+You need JDK 21:
 
 ```bash
 git clone https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff.git
@@ -57,30 +59,12 @@ cd MoreUsefulQuality-of-LifeStuff
 ./gradlew build
 ```
 
-On Windows, use `gradlew.bat build`.
-
-The built mod jar is written to `build/libs/muqols-<version>.jar`.
-
-For development, the usual run configurations are available:
-
-```bash
-./gradlew runClient
-./gradlew runServer
-```
-
-## Contributing
-
-- Bug reports and feature requests: use the
-  [issue forms](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/issues/new/choose).
-- Questions and general discussion: use
-  [GitHub Discussions](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions).
-- Pull requests: describe the change, list the versions you tested with, and run `./gradlew build` before submitting.
+On Windows use `gradlew.bat build`. The mod jar is written to `build/libs/`.
 
 ## Links
 
 - [Issue tracker](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/issues)
 - [Discussions](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions)
-- [Project board](https://github.com/users/Mr-lhk/projects/6)
 - [NeoForge documentation](https://docs.neoforged.net/)
 
 ## License

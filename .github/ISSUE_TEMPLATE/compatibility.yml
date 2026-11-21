@@ -12,7 +12,7 @@ body:
 
         如果移除 MuQoLS 后问题消失、且日志明确指向另一个模组，请优先向该模组报告。If the issue disappears without MuQoLS and the log clearly points to another mod, please report it to that mod first.
 
-        **请附上文本日志**：`.minecraft/logs/latest.log` 和崩溃报告（如有）。Please attach text logs: `.minecraft/logs/latest.log` and any crash report.
+        **如果方便，请附上文本日志（可选）**：`.minecraft/logs/latest.log` 和崩溃报告（如有）。没有日志也可以提交，写清楚现象和模组组合同样有帮助，日志可以之后在评论里补充。Attach text logs if you have them (optional): `.minecraft/logs/latest.log` and any crash report. Issues without logs are welcome too — the symptom and the mod combination are already useful, and logs can be added later in a comment.
   - type: checkboxes
     id: preflight
     attributes:
@@ -73,10 +73,10 @@ body:
   - type: upload
     id: logs
     attributes:
-      label: "日志与崩溃报告 / Logs & crash report"
-      description: "上传 latest.log 和/或 crash-report。支持 .log、.txt、.json、.zip（最大 25 MB）。Upload latest.log and/or the crash report. .log, .txt, .json, .zip up to 25 MB."
+      label: "日志与崩溃报告（可选）/ Logs & crash report (optional)"
+      description: "有日志就上传 latest.log 和/或 crash-report（.log、.txt、.json、.zip，最大 25 MB）；没有也可以提交。Upload latest.log and/or the crash report if you have them (.log, .txt, .json, .zip up to 25 MB); an issue without logs is still welcome."
     validations:
-      required: true
+      required: false
   - type: upload
     id: screenshots
     attributes:
