@@ -40,6 +40,18 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v7
 
+      # A release tag must match mod_version, otherwise the released jar would be
+      # named after a different version than the tag and the release.
+      - name: Verify Tag Matches Mod Version
+        if: github.ref_type == 'tag'
+        run: |
+          version="$(grep -E '^mod_version=' gradle.properties | cut -d '=' -f 2)"
+          if [ "v${version}" != "${GITHUB_REF_NAME}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match mod_version ${version} in gradle.properties"
+            exit 1
+          fi
+          echo "Tag ${GITHUB_REF_NAME} matches mod_version ${version}"
+
       # Setup Java 21
       - name: Setup Java 21
         uses: actions/setup-java@v6
