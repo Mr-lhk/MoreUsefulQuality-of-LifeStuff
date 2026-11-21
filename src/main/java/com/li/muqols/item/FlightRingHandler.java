@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
  * 飞行指环的飞行逻辑。
  * <p>
  * 指环在主背包、副手或 Curios 的戒指槽中时，生存/冒险模式的玩家获得创造式飞行。
- * 实现上使用 NeoForge 的 {@code neoforge:creative_flight} 属性（可同步），
+ * 使用 NeoForge 的 {@code neoforge:creative_flight} 属性，
  * 通过一个专属的临时修饰符授予/撤销，不会影响创造模式或其它模组提供的飞行。
  * 指环被移出背包后修饰符立即移除，服务端会在同一 tick 停止飞行。
  */

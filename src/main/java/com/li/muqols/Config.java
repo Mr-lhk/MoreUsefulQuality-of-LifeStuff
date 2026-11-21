@@ -11,9 +11,10 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 /**
  * 模组配置。
  * <p>
- * 注意时序：NeoForge 在<b>物品注册之后</b>才加载配置（{@code CommonModLoader#begin} 里先
+ * 注意时序：NeoForge 在物品注册之后才加载配置（{@code CommonModLoader#begin} 里先
  * {@code GameData#postRegisterEvents()}，再 {@code ConfigTracker#loadConfigs}），
- * 所以“是否注册某个物品”必须在注册阶段之前决定。这里在类加载时（模组构造器内）
+ * 在注册阶段之前决定是否注册某个物品。
+ * 这里在类加载时（模组构造器内）
  * 直接读取上一次保存的配置文件，用于本次启动的注册判断；配置界面中显示的值来自
  * {@link #SPEC}，修改后需要重启才生效。
  */
@@ -21,16 +22,15 @@ public final class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     public static final ModConfigSpec.BooleanValue ENABLE_MULTITOOL = BUILDER
-            .comment("Whether the six multitool items are registered: wooden, stone, iron, golden, diamond and netherite.",
+            .comment("Enable multitool items.",
                     "Requires a restart of the game or server to take effect.",
-                    "Client and server must use the same value, otherwise their item registries will differ.")
+                    "Warn: Client and server must use the same value, otherwise their item registries will differ.")
             .define("enableMultitool", true);
 
     public static final ModConfigSpec.BooleanValue ENABLE_FLIGHT_RING = BUILDER
-            .comment("Whether the flight ring item is registered.",
-                    "While it is in the player's inventory or offhand, survival and adventure players can fly like in creative mode.",
+            .comment("Enable flight ring item.",
                     "Requires a restart of the game or server to take effect.",
-                    "Client and server must use the same value, otherwise their item registries will differ.")
+                    "Warn: Client and server must use the same value, otherwise their item registries will differ.")
             .define("enableFlightRing", true);
 
     public static final ModConfigSpec SPEC = BUILDER.build();
