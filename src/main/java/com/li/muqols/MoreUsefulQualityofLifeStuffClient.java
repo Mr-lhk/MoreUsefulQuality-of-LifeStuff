@@ -1,6 +1,5 @@
 package com.li.muqols;
 
-import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -16,16 +15,12 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @EventBusSubscriber(modid = MoreUsefulQualityofLifeStuff.MOD_ID, value = Dist.CLIENT)
 public class MoreUsefulQualityofLifeStuffClient {
     public MoreUsefulQualityofLifeStuffClient(ModContainer container) {
-        // Allows NeoForge to create a config screen for this mod's configs.
-        // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
-        // Do not forget to add translations for your config options to the en_us.json file.
+        // 让 NeoForge 的模组列表为该模组的配置生成配置界面（Mods -> 模组 -> Config）。
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        MoreUsefulQualityofLifeStuff.LOGGER.info("HELLO FROM CLIENT SETUP");
-        MoreUsefulQualityofLifeStuff.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        MoreUsefulQualityofLifeStuff.LOGGER.debug("MuQoLS client initialized");
     }
 }

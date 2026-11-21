@@ -93,10 +93,10 @@ body:
   - type: upload
     id: logs
     attributes:
-      label: "日志与崩溃报告 / Logs & crash report"
-      description: "上传 latest.log 和/或 crash-report。支持 .log、.txt、.json、.zip（最大 25 MB）。Upload latest.log and/or the crash report. .log, .txt, .json, .zip up to 25 MB."
+      label: "日志与崩溃报告（可选）/ Logs & crash report (optional)"
+      description: "可选。支持 .log、.txt、.json、.zip（最大 25 MB）。Optional. .log, .txt, .json, .zip up to 25 MB."
     validations:
-      required: true
+      required: false
   - type: textarea
     id: config
     attributes:

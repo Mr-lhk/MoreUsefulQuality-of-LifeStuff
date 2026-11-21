@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "muqols:wooden_multitool",
+    "muqols:stone_multitool",
+    "muqols:iron_multitool",
+    "muqols:golden_multitool",
+    "muqols:diamond_multitool",
+    "muqols:netherite_multitool"
+  ]
+}
