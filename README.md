@@ -8,12 +8,7 @@ feel like vanilla: a handful of practical conveniences, no new progression, no o
 
 ## Features
 
-- **Six multitools** (wood, stone, iron, gold, diamond, netherite) — one item that mines like a pickaxe, chops like an
-  axe, tills like a hoe, digs like a shovel and hits like a sword, with stats aligned to the vanilla tool of its tier.
-- **Flight ring** — while the ring is in your inventory, offhand, or a Curios ring slot, survival and adventure players
-  can fly. Creative and spectator players are untouched.
-
-Both features are enabled by default and can be turned off in the config. Recipes are not implemented yet.
+The mod is in rapid development. Any features could be changed.
 
 ## Design philosophy
 
@@ -23,9 +18,8 @@ Both features are enabled by default and can be turned off in the config. Recipe
    understood and disabled on its own.
 3. **Vanilla first.** No new systems to learn. If a feature changes how the game feels, it should feel like vanilla
    Minecraft doing it.
-4. **Configurable.** Anything that changes gameplay can be switched off, so the mod can be tuned to a pack.
-5. **Compatibility-friendly.** No hard dependencies. Optional integrations (such as Curios ring slots) are detected at
-   runtime and simply skipped when the other mod is absent.
+4. **Configurable.** Anything that changes gameplay can be switched off.
+5. **Compatibility-friendly.** No hard dependencies. 
 
 ## Requirements
 
@@ -47,7 +41,7 @@ On a dedicated server, place the same jar in the server's `mods` folder.
 ## Configuration
 
 The config file is `config/muqols-common.toml`; it is also reachable in game from `Options → Mods → MuQoLS → Config`.
-Changing it requires a restart, because the mod decides which items to register before the config is loaded.
+Changing it requires a restart.
 
 ## Building from source
 
@@ -60,12 +54,6 @@ cd MoreUsefulQuality-of-LifeStuff
 ```
 
 On Windows use `gradlew.bat build`. The mod jar is written to `build/libs/`.
-
-## Links
-
-- [Issue tracker](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/issues)
-- [Discussions](https://github.com/Mr-lhk/MoreUsefulQuality-of-LifeStuff/discussions)
-- [NeoForge documentation](https://docs.neoforged.net/)
 
 ## License
 
