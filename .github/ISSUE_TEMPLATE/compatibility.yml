@@ -1,0 +1,84 @@
+name: "🧩 兼容性问题 / Compatibility Issue"
+description: "报告 MuQoLS 与其他模组、整合包或加载器的冲突。Report a conflict with another mod, modpack, or loader."
+title: "[Compatibility] "
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 提交前请先确认 / Before you submit
+
+        兼容性问题通常需要**最小化复现**：只保留 MuQoLS、冲突模组和必要的前置模组，确认问题仍然存在。Compatibility issues usually need a **minimal reproduction**: keep only MuQoLS, the conflicting mod, and required dependencies.
+
+        如果移除 MuQoLS 后问题消失、且日志明确指向另一个模组，请优先向该模组报告。If the issue disappears without MuQoLS and the log clearly points to another mod, please report it to that mod first.
+
+        **请附上文本日志**：`.minecraft/logs/latest.log` 和崩溃报告（如有）。Please attach text logs: `.minecraft/logs/latest.log` and any crash report.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: "提交前检查 / Pre-flight checklist"
+      options:
+        - label: "我已搜索现有 Issue 和 Discussions，确认没有重复。I have searched existing issues and discussions and found no duplicate."
+          required: true
+        - label: "我已用最小模组组合复现问题。I have reproduced the issue with a minimal mod set."
+          required: true
+        - label: "我已确认 MuQoLS 和冲突模组都是各自的最新版本。I am using the latest versions of both MuQoLS and the conflicting mod."
+          required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: "MuQoLS 版本 / MuQoLS version"
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: minecraft_version
+    attributes:
+      label: "Minecraft 版本 / Minecraft version"
+      placeholder: "1.21.1"
+    validations:
+      required: true
+  - type: input
+    id: neoforge_version
+    attributes:
+      label: "NeoForge 版本 / NeoForge version"
+      placeholder: "21.1.219"
+    validations:
+      required: true
+  - type: input
+    id: other_mod
+    attributes:
+      label: "冲突模组及版本 / Conflicting mod and version"
+      description: "例如 Create 6.0.0。Example: Create 6.0.0."
+      placeholder: "Mod name 1.2.3"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "冲突描述 / Describe the conflict"
+      description: "发生了什么？涉及哪些方块、物品、界面或配方？What happens? Which blocks, items, screens or recipes are involved?"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "复现步骤 / Steps to reproduce"
+      placeholder: |
+        1. 安装 MuQoLS 和 ... / Install MuQoLS and ...
+        2. 执行 ... / Do ...
+        3. 看到 ... / See ...
+    validations:
+      required: true
+  - type: upload
+    id: logs
+    attributes:
+      label: "日志与崩溃报告 / Logs & crash report"
+      description: "上传 latest.log 和/或 crash-report。支持 .log、.txt、.json、.zip（最大 25 MB）。Upload latest.log and/or the crash report. .log, .txt, .json, .zip up to 25 MB."
+    validations:
+      required: true
+  - type: upload
+    id: screenshots
+    attributes:
+      label: "截图、视频或配置 / Screenshots, video, or config"
+      description: "可选。Optional. Images up to 10 MB, videos up to 100 MB."

@@ -1,0 +1,46 @@
+# 根据改动路径自动添加标签。标签名称必须与仓库中的标签完全一致。
+# Automatically label pull requests based on changed paths. Label names must match the repository labels exactly.
+
+"area: source":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/main/java/**"
+
+"area: assets":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/main/resources/assets/**"
+
+"area: data":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/main/resources/data/**"
+          - "src/main/resources/*_pack/**"
+          - "src/generated/**"
+
+"area: build":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "build.gradle"
+          - "settings.gradle"
+          - "gradle.properties"
+          - "gradle/**"
+          - "gradlew"
+          - "gradlew.bat"
+          - "src/main/templates/**"
+
+"area: ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+
+"documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "LICENSE.txt"
+
+"translation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/main/resources/assets/*/lang/**"
